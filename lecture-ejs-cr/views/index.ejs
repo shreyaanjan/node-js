@@ -8,8 +8,35 @@
 </head>
 
 <body>
-    <h1>Student Information</h1>
-    <table border="3" cellpadding="5" cellspacing="0">
+    <h1 align="center">Student Information</h1>
+    <div>
+        <form action="/add-students" method="post" align="center">
+            <div>
+                <label for="id">ID : </label>
+                <input type="number" name="id" id="id">
+            </div><br>
+            <div>
+                <label for="name">Name : </label>
+                <input type="text" name="name" id="name">
+            </div><br>
+            <div>
+                <label for="course">Course : </label>
+                <select name="course" id="course">
+                    <option value="">Select Course</option>
+                    <option value="fsd">Full Stack Development</option>
+                    <option value="ai-ml">AI/ML</option>
+                    <option value="ui/ux">UI/UX</option>
+                    <option value="cyber-security">Cyber Security</option>
+                </select>
+            </div><br>
+            <div>
+                <label for="mail">Email : </label>
+                <input type="email" name="mail" id="mail">
+            </div><br>
+            <button>Submit</button>
+        </form>
+    </div><br>
+    <table align="center" border="2" width="500" cellpadding="10" cellspacing="0">
         <thead>
             <tr>
                 <th>ID</th>
@@ -21,10 +48,18 @@
         <tbody>
             <% data.map((stu)=> { %>
                 <tr>
-                    <td><%= stu.id %></td>
-                    <td><%= stu.name %></td>
-                    <td><%= stu.course%></td>
-                    <td><%= stu.mail%></td>
+                    <td>
+                        <%= stu.id %>
+                    </td>
+                    <td>
+                        <%= stu.name %>
+                    </td>
+                    <td>
+                        <%= stu.course%>
+                    </td>
+                    <td>
+                        <%= stu.mail%>
+                    </td>
                 </tr>
                 <% }) %>
         </tbody>
