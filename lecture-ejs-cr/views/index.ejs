@@ -36,17 +36,18 @@
             <button>Submit</button>
         </form>
     </div><br>
-    <table align="center" border="2" width="500" cellpadding="10" cellspacing="0">
+    <table align="center" border="2" width="700" cellpadding="10" cellspacing="0">
         <thead>
             <tr>
                 <th>ID</th>
                 <th>Name</th>
                 <th>Course</th>
                 <th>Mail</th>
+                <th>Actions</th>
             </tr>
         </thead>
         <tbody>
-            <% data.map((stu)=> { %>
+            <% students.map((stu)=> { %>
                 <tr>
                     <td>
                         <%= stu.id %>
@@ -59,6 +60,10 @@
                     </td>
                     <td>
                         <%= stu.mail%>
+                    </td>
+                    <td>
+                        <a href="/edit-student?studentId=<%= stu.id %>">Edit</a>
+                        <a href="/delete-student?studentId=<%= stu.id %>">Delete</a>
                     </td>
                 </tr>
                 <% }) %>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h1 align="center">Edit Student</h1>
+    <div>
+        <form action="/edit-student" method="post" align="center">
+            <div>
+                <label for="id">ID : </label>
+                <input type="hidden" name="id" id="id" value="<%= studentData.id %>">
+            </div><br>
+            <div>
+                <label for="name">Name : </label>
+                <input type="text" name="name" id="name" value="<%= studentData.name %>">
+            </div><br>
+            <div>
+                <label for="course">Course : </label>
+                <select name="course" id="course">
+                    <option value="">Select Course</option>
+                    <option <%=studentData.course=="fsd" ? "selected" : "" %> value="fsd">Full Stack Development
+                    </option>
+                    <option <%=studentData.course=="ai-ml" ? "selected" : "" %> value="ai-ml">AI/ML</option>
+                    <option <%=studentData.course=="ui/ux" ? "selected" : "" %> value="ui/ux">UI/UX</option>
+                    <option <%=studentData.course=="cyber-security" ? "selected" : "" %> value="cyber-security">Cyber
+                        Security</option>
+                </select>
+            </div><br>
+            <div>
+                <label for="mail">Email : </label>
+                <input type="email" name="mail" id="mail" value="<%= studentData.mail %>">
+            </div><br>
+            <button>Update</button>
+        </form>
+    </div><br>
+</body>
+
+</html>
