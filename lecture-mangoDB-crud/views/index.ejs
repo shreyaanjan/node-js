@@ -71,7 +71,7 @@
                             <%= stu.city %>
                         </td>
                         <td>
-                            <button class="btn btn-success">Edit</button>
+                            <a href="/edit-student/<%= stu.id %>" class="btn btn-success">Edit</a>
                             <button onclick="deleteStudent('<%= stu.id %>')" class="btn btn-danger">Delete</button>
                         </td>
                     </tr>

@@ -13,18 +13,8 @@ connectDb()
 
 app.get("/", async (req, res) => {
     try {
-        const students = await Student.find()
+        const students = await Student.find({})
         res.render("index", { students })
-    } catch (error) {
-        console.log(error);
-    }
-})
-
-app.get('/delete-student', async (req, res) => {
-    try {
-        const { deleteId } = req.query
-        await Student.findByIdAndDelete(deleteId)
-        res.redirect('/')
     } catch (error) {
         console.log(error);
     }
@@ -35,7 +25,38 @@ app.post('/add-students', async (req, res) => {
         const data = req.body
         const newStudent = new Student(data)
         await newStudent.save()
-        res.redirect('/')
+        return res.redirect('/')
+    } catch (error) {
+        console.log(error);
+    }
+})
+
+app.get('/edit-student/:editId', async (req, res) => {
+    try {
+        const { editId } = req.params
+        const editStu = await Student.findById(editId)
+        return res.render('edit', { editStu })
+    } catch (error) {
+        console.log(error);
+    }
+})
+
+app.post('/edit-student/:editId', async (req, res) => {
+    try {
+        const { editId } = req.params
+        const data = req.body
+        await Student.findByIdAndUpdate(editId, data)
+        return res.redirect('/')
+    } catch (error) {
+        console.log(error);
+    }
+})
+
+app.get('/delete-student', async (req, res) => {
+    try {
+        const { deleteId } = req.query
+        await Student.findByIdAndDelete(deleteId)
+        return res.redirect('/')
     } catch (error) {
         console.log(error);
     }
