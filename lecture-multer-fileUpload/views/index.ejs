@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+
+<body>
+    <div class="container">
+        <h2>Student Data</h2>
+        <form action="/add-students" method="post" enctype="multipart/form-data">
+            <div class="d-flex align-items-center gap-3">
+                <div class="mb-3">
+                    <label for="name" class="form-label">Name : </label>
+                    <input type="text" class="form-control" id="name" name="name">
+                </div>
+                <div class="mb-3">
+                    <label for="email" class="form-label">Email : </label>
+                    <input type="email" class="form-control" id="email" name="email">
+                </div>
+            </div>
+            <div class="d-flex align-items-center gap-3">
+                <div>
+                    <label for="city" class="form-label">City : </label>
+                    <select for="city" name="city" class="form-select w-100">
+                        <option selected>Select City</option>
+                        <option value="Surat">Surat</option>
+                        <option value="Ahmedabad">Ahmedabad</option>
+                        <option value="Navsari">Navsari</option>
+                        <option value="Rajkot">Rajkot</option>
+                        <option value="Vapi">Vapi</option>
+                    </select>
+                </div>
+                <div>
+                    <label for="file" class="form-label">Photo : </label>
+                    <input type="file" name="file" class="form-select" accept="image/*">
+                </div>
+            </div>
+            <button class="btn btn-primary">Submit</button>
+        </form>
+        <table class="table table-responsive my-3">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>City</th>
+                    <th>Photo</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+        </table>
+    </div>
+</body>
+
+</html>
