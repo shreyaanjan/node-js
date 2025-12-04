@@ -51,6 +51,20 @@
                     <th>Actions</th>
                 </tr>
             </thead>
+            <tbody>
+                <% students.map((stu) => { %>
+                    <tr>
+                        <td><%= stu.name %></td>
+                        <td><%= stu.email %></td>
+                        <td><%= stu.city %></td>
+                        <td><img src="/<%= stu.photo %>" alt="<%= stu.name %>" width="100px"></td>
+                        <td> 
+                            <a href="/edit-student/<%= stu.id %>" class="btn btn-success">Edit</a>
+                            <a href="/delete-student/<%= stu.id %>" class="btn btn-danger">Delete</a>
+                        </td>
+                    </tr>
+                <% }) %>
+            </tbody>
         </table>
     </div>
 </body>

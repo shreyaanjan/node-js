@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+
+<body>
+    <div class="container">
+        <h2>Edit Student</h2>
+        <form action="/edit-student/:id" method="post" enctype="multipart/form-data">
+            <div class="d-flex align-items-center gap-3">
+                <div class="mb-3">
+                    <label for="name" class="form-label">Name : </label>
+                    <input type="text" value="<%= editStu.name %>" class="form-control" id="name" name="name">
+                </div>
+                <div class="mb-3">
+                    <label for="email" class="form-label">Email : </label>
+                    <input type="email" value="<%= editStu.email %>" class="form-control" id="email" name="email">
+                </div>
+            </div>
+            <div class="d-flex align-items-center gap-3">
+                <div>
+                    <label for="city" class="form-label">City : </label>
+                    <select for="city" name="city" class="form-select w-100">
+                        <option selected>Select City</option>
+                        <option <%=editStu.city == "Surat" ? "selected" : "" %> value="Surat">Surat</option>
+                        <option <%=editStu.city == "Ahmedabad" ? "selected" : "" %> value="Ahmedabad">Ahmedabad</option>
+                        <option <%=editStu.city == "Navsari" ? "selected" : "" %> value="Navsari">Navsari</option>
+                        <option <%=editStu.city == "Rajkot" ? "selected" : "" %> value="Rajkot">Rajkot</option>
+                        <option <%=editStu.city == "Vapi" ? "selected" : "" %> value="Vapi">Vapi</option>
+                    </select>
+                </div>
+                <div>
+                    <label for="file" class="form-label">Photo : </label>
+                    <input type="file" name="file" class="form-select" accept="image/*">
+                </div>
+                <img src="/<%= editStu.photo %>" alt="<%= editStu.name %>" width="100px">
+            </div>
+            <button class="btn btn-primary">Submit</button>
+        </form>
+    </div>
+</body>
+
+</html>
