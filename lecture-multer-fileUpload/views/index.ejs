@@ -59,8 +59,8 @@
                         <td><%= stu.city %></td>
                         <td><img src="/<%= stu.photo %>" alt="<%= stu.name %>" width="100px"></td>
                         <td> 
-                            <a href="/edit-student/<%= stu.id %>" class="btn btn-success">Edit</a>
-                            <a href="/delete-student/<%= stu.id %>" class="btn btn-danger">Delete</a>
+                            <a href="/edit-student/<%= stu._id %>" class="btn btn-success">Edit</a>
+                            <a href="/delete-student/<%= stu._id %>" class="btn btn-danger">Delete</a>
                         </td>
                     </tr>
                 <% }) %>
