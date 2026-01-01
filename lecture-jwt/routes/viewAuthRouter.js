@@ -1,8 +1,24 @@
-const express = require('express')
-const User = require('../models/UserModule.js')
+const express = require('express');
+const User = require('../models/UserModule');
 const router = express.Router()
 const bcrypt = require('bcrypt')
 const jwt = require('jsonwebtoken')
+
+router.get('/signup', (req, res) => {
+    try {
+        return res.render('signup')
+    } catch (error) {
+        console.log(error);
+    }
+})
+
+router.get('/login', (req, res) => {
+    try {
+        return res.render('login')
+    } catch (error) {
+        console.log(error);
+    }
+})
 
 router.post('/signup', async (req, res) => {
     try {
@@ -14,10 +30,7 @@ router.post('/signup', async (req, res) => {
         }
 
         await User.create(newUser)
-        return res.json({
-            message: "Sign up done",
-            status: true,
-        })
+        return res.redirect('/auth/login')
     } catch (error) {
         console.log(error);
     }
@@ -27,21 +40,15 @@ router.post('/login', async (req, res) => {
     try {
         const { email, password } = req.body
 
-        const user = await User.findOne({ email })
         console.log(email, password);
+        const user = await User.findOne({ email })
         if (!user) {
-            return res.status(400).json({
-                message: "user not found. try again.",
-                status: false,
-            })
+            return res.redirect('/auth/login')
         }
 
         const isValid = await bcrypt.compare(password, user.password)
         if (!isValid) {
-            return res.status(400).json({
-                message: "invalid password",
-                status: false,
-            })
+            return res.redirect('/auth/login')
         }
 
         const token = jwt.sign({
@@ -49,11 +56,7 @@ router.post('/login', async (req, res) => {
         }, process.env.PVT_KEY,
             { expiresIn: '2h' })
 
-        return res.status(200).json({
-            message: "user logged in",
-            status: true,
-            token
-        })
+        return res.redirect('/')
     } catch (error) {
         console.log(error);
     }
