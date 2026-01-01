@@ -1,5 +1,5 @@
 const express = require('express');
-const User = require('../models/UserModule');
+const User = require('../models/UserModule.js');
 const router = express.Router()
 const bcrypt = require('bcrypt')
 const jwt = require('jsonwebtoken')
@@ -39,8 +39,6 @@ router.post('/signup', async (req, res) => {
 router.post('/login', async (req, res) => {
     try {
         const { email, password } = req.body
-
-        console.log(email, password);
         const user = await User.findOne({ email })
         if (!user) {
             return res.redirect('/auth/login')
@@ -52,10 +50,17 @@ router.post('/login', async (req, res) => {
         }
 
         const token = jwt.sign({
+            id: user._id,
             email: user.email
-        }, process.env.PVT_KEY,
-            { expiresIn: '2h' })
+        }, process.env.PVT_KEY, {
+            expiresIn: '2h'
+        })
 
+        res.cookie("token", token, {
+            maxAge: 24 * 60 * 60 * 1000,
+            httpOnly: true,
+        })
+        
         return res.redirect('/')
     } catch (error) {
         console.log(error);

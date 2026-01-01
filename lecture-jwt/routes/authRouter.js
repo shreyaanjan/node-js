@@ -28,7 +28,6 @@ router.post('/login', async (req, res) => {
         const { email, password } = req.body
 
         const user = await User.findOne({ email })
-        console.log(email, password);
         if (!user) {
             return res.status(400).json({
                 message: "user not found. try again.",
@@ -43,11 +42,6 @@ router.post('/login', async (req, res) => {
                 status: false,
             })
         }
-
-        const token = jwt.sign({
-            email: user.email
-        }, process.env.PVT_KEY,
-            { expiresIn: '2h' })
 
         return res.status(200).json({
             message: "user logged in",
